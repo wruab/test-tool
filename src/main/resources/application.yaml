@@ -1,6 +1,3 @@
-server:
-  port: 59450
-
 spring:
   application:
     name: test
