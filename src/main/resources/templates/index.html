@@ -2,104 +2,18 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>Test-Tools</title>
-    <!-- 引入 highlight.js 库 -->
-    <script src="/js/highlight.min.js"></script>
-    <link rel="stylesheet" href="/css/highlight.min.css">
-    <style>
-        #json-format {
-            width: 100%;
-            height: 400px;
-            resize: both;
-            overflow: auto;
-        }
-
-        pre {
-            background-color: #f4f4f4;
-            padding: 10px;
-            border-radius: 5px;
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            position: relative;
-        }
-
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            padding: 5px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-
-        .copy-btn:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <title>工具集</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<label for="json-format">在这里输入JSON字符串:</label>
-<textarea id="json-format" placeholder="请输入..."></textarea>
-<br>
-<button onclick="formatThisJson()">格式化</button>
+<div class="tool-container">
+    <h1>工具集</h1>
 
-<h3>格式化后:</h3>
-<pre id="formatted-json">
-    <code class="json"></code>
-</pre>
+    <!-- 创建超链接，点击后跳转到 JSON 格式化工具页面 -->
+    <h2><a href="tool/json-format">JSON 格式化工具</a></h2>
 
-<script>
-    // 格式化并显示带颜色的 JSON
-    function formatThisJson() {
-        const jsonInput = document.getElementById('json-format').value;  // 获取输入的 JSON 字符串
-        const formattedJson = formatJson(jsonInput);  // 格式化 JSON
-
-        // 获取 <pre> 和 <code> 元素
-        const preElement = document.getElementById('formatted-json');
-        const codeElement = preElement.querySelector('code');
-
-        // 设置格式化后的 JSON，确保它可以被 hljs 高亮处理
-        codeElement.textContent = formattedJson;
-
-        // 使用 highlight.js 为格式化后的 JSON 添加语法高亮
-        hljs.highlightElement(codeElement);  // 通过 hljs 进行高亮处理
-
-        // 在格式化后的 JSON 上方添加复制按钮
-        const copyButton = document.createElement('button');
-        copyButton.classList.add('copy-btn');
-        copyButton.innerText = 'Copy';
-        copyButton.onclick = function() {
-            copyToClipboard(codeElement);
-        };
-
-        // 如果按钮已存在，则不再添加
-        if (!document.querySelector('#formatted-json .copy-btn')) {
-            preElement.appendChild(copyButton);
-        }
-    }
-
-    // 格式化 JSON 字符串
-    function formatJson(inputJson) {
-        try {
-            const jsonObject = JSON.parse(inputJson);
-            return JSON.stringify(jsonObject, null, 4);  // 使用 4 个空格进行格式化
-        } catch (error) {
-            return 'Invalid JSON';  // 如果 JSON 格式无效，返回错误提示
-        }
-    }
-
-    // 复制文本到剪贴板
-    function copyToClipboard(codeElement) {
-        const textToCopy = codeElement.innerText;
-        navigator.clipboard.writeText(textToCopy);
-    }
-
-    // 初始化 Highlight.js
-    document.addEventListener('DOMContentLoaded', function() {
-        hljs.highlightAll();  // 在页面加载时初始化 highlight.js
-    });
-</script>
+    <!-- 创建超链接，点击后跳转到其他工具页面 -->
+    <h2><a href="/another-tool">其他工具</a></h2>
+</div>
 </body>
 </html>
