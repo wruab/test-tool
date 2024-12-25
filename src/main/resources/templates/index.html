@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <title>Test-Tools</title>
+    <script src="/js/axios.min.js"></script>
+    <script src="/js/highlight.min.js"></script>
+    <script src="/js/utils.js"></script>
+    <link rel="stylesheet" href="/css/highlight.min.css">
+    <style>
+        #json-format {
+            width: 100%;  /* 设置宽度为父元素的 100% */
+            height: 400px;  /* 设置默认高度为 400px */
+            resize: both;  /* 允许水平和垂直方向调整大小 */
+            overflow: auto;  /* 超过文本框内容时显示滚动条 */
+        }
+
+        /* 用于显示格式化后的 JSON */
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            white-space: pre-wrap; /* 保持换行 */
+            word-wrap: break-word; /* 自动换行 */
+        }
+    </style>
+</head>
+<body>
+<label for="json-format"></label>
+<textarea id="json-format" placeholder="Paste your JSON here..."></textarea>
+<br>
+<button onclick="formatThisJson()">Format JSON</button>
+
+<h3>Formatted JSON:</h3>
+<pre id="formatted-json"></pre>
+<script>
+    function formatThisJson() {
+        const jsonInput = document.getElementById('json-format').value;  // 获取 textarea 中的内容
+        const formattedJson = formatJson(jsonInput);  // 格式化 JSON
+
+        // 将格式化后的 JSON 显示在 <pre> 标签中
+        const preElement = document.getElementById('formatted-json');
+        preElement.textContent = formattedJson;  // 设置文本内容
+
+        // 使用 highlight.js 为格式化后的 JSON 添加语法高亮
+        hljs.highlightElement(preElement);  // 高亮显示 <pre> 中的 JSON 内容
+    }
+</script>
+</body>
+</html>
