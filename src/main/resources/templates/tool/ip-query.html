@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>IP 查询</title>
+</head>
+<body>
+<h1>IP 地理位置查询</h1>
+<!-- 表单 -->
+<form method="get" action="/tool/ip-query">
+    <label for="ip">请输入 IP 地址：</label>
+    <input type="text" id="ip" name="ip" placeholder="如：8.8.8.8" required>
+    <button type="submit">查询</button>
+</form>
+
+<!-- 展示框 -->
+<div>
+    <!-- 查询结果 -->
+    <div th:if="${ip}">
+        <h2>查询结果：</h2>
+        <p>IP 地址：<span th:text="${ip}"></span></p>
+        <p>国家：<span th:text="${country}"></span></p>
+        <p>城市：<span th:text="${city}"></span></p>
+        <p>经度：<span th:text="${latitude}"></span></p>
+        <p>纬度：<span th:text="${longitude}"></span></p>
+    </div>
+</div>
+</body>
+</html>
