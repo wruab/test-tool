@@ -1,7 +1,7 @@
 package com.xiaoheibaby.test.service;
 
 import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
-import com.xiaoheibaby.test.common.copy.copy.BeanCopier;
+import com.xiaoheibaby.test.common.copy.BeanCopier;
 import com.xiaoheibaby.test.mapper.UserMapper;
 import com.xiaoheibaby.test.model.dto.UserDTO;
 import com.xiaoheibaby.test.model.entity.User;

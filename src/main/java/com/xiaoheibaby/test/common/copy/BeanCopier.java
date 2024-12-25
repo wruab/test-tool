@@ -1,4 +1,4 @@
-package com.xiaoheibaby.test.common.copy.copy;
+package com.xiaoheibaby.test.common.copy;
 
 import com.xiaoheibaby.test.model.dto.UserDTO;
 import com.xiaoheibaby.test.model.entity.User;
