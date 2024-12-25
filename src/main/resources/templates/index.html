@@ -1,49 +1,105 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
+    <meta charset="UTF-8">
     <title>Test-Tools</title>
-    <script src="/js/axios.min.js"></script>
+    <!-- 引入 highlight.js 库 -->
     <script src="/js/highlight.min.js"></script>
-    <script src="/js/utils.js"></script>
     <link rel="stylesheet" href="/css/highlight.min.css">
     <style>
         #json-format {
-            width: 100%;  /* 设置宽度为父元素的 100% */
-            height: 400px;  /* 设置默认高度为 400px */
-            resize: both;  /* 允许水平和垂直方向调整大小 */
-            overflow: auto;  /* 超过文本框内容时显示滚动条 */
+            width: 100%;
+            height: 400px;
+            resize: both;
+            overflow: auto;
         }
 
-        /* 用于显示格式化后的 JSON */
         pre {
             background-color: #f4f4f4;
             padding: 10px;
             border-radius: 5px;
-            white-space: pre-wrap; /* 保持换行 */
-            word-wrap: break-word; /* 自动换行 */
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            padding: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .copy-btn:hover {
+            background-color: #45a049;
         }
     </style>
 </head>
 <body>
-<label for="json-format"></label>
-<textarea id="json-format" placeholder="Paste your JSON here..."></textarea>
+<label for="json-format">在这里输入JSON字符串:</label>
+<textarea id="json-format" placeholder="请输入..."></textarea>
 <br>
-<button onclick="formatThisJson()">Format JSON</button>
+<button onclick="formatThisJson()">格式化</button>
 
-<h3>Formatted JSON:</h3>
-<pre id="formatted-json"></pre>
+<h3>格式化后:</h3>
+<pre id="formatted-json">
+    <code class="json"></code>
+</pre>
+
 <script>
+    // 格式化并显示带颜色的 JSON
     function formatThisJson() {
-        const jsonInput = document.getElementById('json-format').value;  // 获取 textarea 中的内容
+        const jsonInput = document.getElementById('json-format').value;  // 获取输入的 JSON 字符串
         const formattedJson = formatJson(jsonInput);  // 格式化 JSON
 
-        // 将格式化后的 JSON 显示在 <pre> 标签中
+        // 获取 <pre> 和 <code> 元素
         const preElement = document.getElementById('formatted-json');
-        preElement.textContent = formattedJson;  // 设置文本内容
+        const codeElement = preElement.querySelector('code');
+
+        // 设置格式化后的 JSON，确保它可以被 hljs 高亮处理
+        codeElement.textContent = formattedJson;
 
         // 使用 highlight.js 为格式化后的 JSON 添加语法高亮
-        hljs.highlightElement(preElement);  // 高亮显示 <pre> 中的 JSON 内容
+        hljs.highlightElement(codeElement);  // 通过 hljs 进行高亮处理
+
+        // 在格式化后的 JSON 上方添加复制按钮
+        const copyButton = document.createElement('button');
+        copyButton.classList.add('copy-btn');
+        copyButton.innerText = 'Copy';
+        copyButton.onclick = function() {
+            copyToClipboard(codeElement);
+        };
+
+        // 如果按钮已存在，则不再添加
+        if (!document.querySelector('#formatted-json .copy-btn')) {
+            preElement.appendChild(copyButton);
+        }
     }
+
+    // 格式化 JSON 字符串
+    function formatJson(inputJson) {
+        try {
+            const jsonObject = JSON.parse(inputJson);
+            return JSON.stringify(jsonObject, null, 4);  // 使用 4 个空格进行格式化
+        } catch (error) {
+            return 'Invalid JSON';  // 如果 JSON 格式无效，返回错误提示
+        }
+    }
+
+    // 复制文本到剪贴板
+    function copyToClipboard(codeElement) {
+        const textToCopy = codeElement.innerText;
+        navigator.clipboard.writeText(textToCopy);
+    }
+
+    // 初始化 Highlight.js
+    document.addEventListener('DOMContentLoaded', function() {
+        hljs.highlightAll();  // 在页面加载时初始化 highlight.js
+    });
 </script>
 </body>
 </html>
