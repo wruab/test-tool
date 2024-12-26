@@ -70,4 +70,14 @@ public class PixelService {
         }
         return colors;
     }
+
+    public void updateColor(int x, int y, String color) {
+        List<PixelData> pixelDataList = queryAllPixel();
+        pixelDataList.stream()
+            .filter(item -> item.getX() == x && item.getY() == y)
+            .forEach(item -> item.setColor(color));
+        configDataMapper.update(new LambdaUpdateWrapper<ConfigData>()
+            .set(ConfigData::getData, JsonUtil.toJson(pixelDataList))
+            .eq(ConfigData::getName, ConfigDataConst.PIXEL_DATA_NAME));
+    }
 }

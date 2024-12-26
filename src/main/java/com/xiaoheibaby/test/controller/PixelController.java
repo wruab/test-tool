@@ -16,6 +16,7 @@ public class PixelController {
 
     @GetMapping({"", "/", "/index"})
     public String index(Model model) {
+        pixelService.init();
         model.addAttribute("rows", PixelService.rows);
         model.addAttribute("cols", PixelService.cols);
         model.addAttribute("colors", pixelService.convertToColors());

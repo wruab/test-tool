@@ -63,4 +63,9 @@ public class RestReqController {
     public List<PixelData> pixelExport() {
         return pixelService.queryAllPixel();
     }
+
+    @PostMapping("/pixel-update")
+    public void pixelUpdate(int x, int y, String color) {
+        pixelService.updateColor(x, y, color);
+    }
 }
