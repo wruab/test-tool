@@ -1,8 +1,12 @@
 package com.xiaoheibaby.test.model.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class PixelData {
     private int x;
     private int y;
