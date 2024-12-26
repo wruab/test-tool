@@ -1,4 +1,7 @@
-CREATE TABLE IF NOT EXISTS user(
-    username VARCHAR(255) NOT NULL,
-    password VARCHAR(255) NOT NULL
+CREATE TABLE IF NOT EXISTS config_data (
+   id INTEGER PRIMARY KEY AUTOINCREMENT,
+   name TEXT NOT NULL UNIQUE,
+   data TEXT,
+   create_time DATETIME,
+   update_time DATETIME
 );

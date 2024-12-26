@@ -1,13 +1,16 @@
 package com.xiaoheibaby.test.controller.rest;
 
 import com.xiaoheibaby.test.model.dto.IpInfoDTO;
+import com.xiaoheibaby.test.model.dto.PixelData;
 import com.xiaoheibaby.test.service.GeoLiteService;
+import com.xiaoheibaby.test.service.PixelService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Random;
 
 @Slf4j
@@ -16,6 +19,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class RestReqController {
     private final GeoLiteService geoLiteService;
+    private final PixelService pixelService;
 
     /**
      * ip查询
@@ -48,5 +52,15 @@ public class RestReqController {
         Thread.sleep(delaySeconds * 1000L);
         // 返回延迟的时间
         return "Delayed for " + delaySeconds + " seconds.";
+    }
+
+    @GetMapping("/pixel-init")
+    public void pixelInit() {
+        pixelService.init();
+    }
+
+    @GetMapping("/pixel-export")
+    public List<PixelData> pixelExport() {
+        return pixelService.queryAllPixel();
     }
 }
