@@ -9,4 +9,4 @@ spring:
     driver-class-name: org.sqlite.JDBC
 
 app:
-  mmdb-path: xxxx
+  mmdb-path: /Users/huasheng/mmdb/GeoLite2-City.mmdb
