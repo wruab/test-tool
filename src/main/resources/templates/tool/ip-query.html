@@ -9,7 +9,7 @@
 <!-- 表单 -->
 <form method="get" action="/tool/ip-query">
     <label for="ip">请输入 IP 地址：</label>
-    <input type="text" id="ip" name="ip" placeholder="如：8.8.8.8" required>
+    <input type="text" id="ip" name="ip" placeholder="如：8.8.8.8" required th:value="${ip}">
     <button type="submit">查询</button>
 </form>
 

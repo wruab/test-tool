@@ -1,6 +1,6 @@
 package com.xiaoheibaby.test.controller;
 
-import com.maxmind.geoip2.model.CityResponse;
+import com.xiaoheibaby.test.common.util.ServletUtils;
 import com.xiaoheibaby.test.model.dto.IpInfoDTO;
 import com.xiaoheibaby.test.service.GeoLiteService;
 import lombok.RequiredArgsConstructor;
@@ -24,15 +24,17 @@ public class ToolController {
 
     @GetMapping("/ip-query")
     public String ipQuery(String ip, Model model) {
-        if (StringUtils.isNotEmpty(ip)) {
+        if (StringUtils.isEmpty(ip)) {
+            ip = ServletUtils.getRequestIp();
+        } else {
             ip = ip.trim();
-            IpInfoDTO ipInfoDTO = geoLiteService.ipQuery(ip);
-            model.addAttribute("ip", ip);
-            model.addAttribute("country", ipInfoDTO.getCountryName());
-            model.addAttribute("city", ipInfoDTO.getCityName());
-            model.addAttribute("latitude", ipInfoDTO.getLatitude());
-            model.addAttribute("longitude", ipInfoDTO.getLongitude());
         }
+        IpInfoDTO ipInfoDTO = geoLiteService.ipQuery(ip);
+        model.addAttribute("ip", ip);
+        model.addAttribute("country", ipInfoDTO.getCountryName());
+        model.addAttribute("city", ipInfoDTO.getCityName());
+        model.addAttribute("latitude", ipInfoDTO.getLatitude());
+        model.addAttribute("longitude", ipInfoDTO.getLongitude());
         return "tool/ip-query";
     }
 }
