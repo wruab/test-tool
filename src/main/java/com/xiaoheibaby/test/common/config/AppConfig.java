@@ -1,20 +1,27 @@
 package com.xiaoheibaby.test.common.config;
 
 import com.maxmind.geoip2.DatabaseReader;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.io.ClassPathResource;
 
-import java.io.File;
+import java.io.*;
 
+@Slf4j
 @Configuration
+@RequiredArgsConstructor
 public class AppConfig {
+    private final AppProperties appProperties;
+
     @Bean
-    public DatabaseReader databaseReader() throws Exception {
-        // 使用 ClassPathResource 加载文件
-        ClassPathResource resource = new ClassPathResource("geolite/GeoLite2-City.mmdb");
-        File databaseFile = resource.getFile();
-        // 加载数据库到内存
-        return new DatabaseReader.Builder(databaseFile).build();
+    public DatabaseReader databaseReader() {
+        File databaseFile = new File(appProperties.getMmdbPath());
+        try {
+            return new DatabaseReader.Builder(databaseFile).build();
+        } catch (Exception e) {
+            log.error("error", e);
+            return null;
+        }
     }
 }

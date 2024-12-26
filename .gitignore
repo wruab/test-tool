@@ -7,3 +7,4 @@
 
 sqlite_database.db
 /target/
+!/geolite/GeoLite2-City.mmdb

@@ -3,16 +3,16 @@ package com.xiaoheibaby.test.service;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.model.CityResponse;
 import com.xiaoheibaby.test.model.dto.IpInfoDTO;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.net.InetAddress;
 
 @Service
-@RequiredArgsConstructor
 public class GeoLiteService {
 
-    private final DatabaseReader databaseReader;
+    @Autowired(required = false)
+    private DatabaseReader databaseReader;
 
     public IpInfoDTO ipQuery(String host) {
         IpInfoDTO ipInfoDTO = new IpInfoDTO();

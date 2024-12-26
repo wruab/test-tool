@@ -7,3 +7,6 @@ spring:
   datasource:
     url: jdbc:sqlite:sqlite_database.db
     driver-class-name: org.sqlite.JDBC
+
+app:
+  mmdb-path: xxxx
