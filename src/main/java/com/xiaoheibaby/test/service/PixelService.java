@@ -60,17 +60,6 @@ public class PixelService {
         });
     }
 
-    public String[][] convertToColors() {
-        String[][] colors = new String[rows][cols];
-        for (PixelData pixelData : queryAllPixel()) {
-            int x = pixelData.getX(); // 列
-            int y = pixelData.getY(); // 行
-            String color = pixelData.getColor(); // 颜色
-            colors[x][y] = color;
-        }
-        return colors;
-    }
-
     public void updateColor(int x, int y, String color) {
         List<PixelData> pixelDataList = queryAllPixel();
         pixelDataList.stream()

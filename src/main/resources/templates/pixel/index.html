@@ -37,8 +37,13 @@
 <body>
 
 <div class="grid-container">
-    <div th:each="row : ${colors}">
-        <div th:each="color : ${row}" class="grid-item" th:style="'background-color: ' + ${color}"></div>
+    <div th:each="row, rowIndex : ${pixelData}" class="row">
+        <div class="grid-item"
+             th:each="pixel, pixelIndex : ${row}"
+             th:data-x="${pixelIndex}"
+             th:data-y="${rowIndex}"
+             th:style="'background-color: ' + ${pixel.color}">
+        </div>
     </div>
 </div>
 
