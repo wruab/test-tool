@@ -7,9 +7,12 @@
 <body>
 <div class="tool-container">
     <h1>工具集</h1>
-    <h3><a href="tool/json-format">JSON 格式化工具</a></h3>
-    <h3><a href="tool/ip-query">IP查询工具</a></h3>
-    <h3><a href="pixel/index">像素网格</a></h3>
+
+    <div>
+        <h3 th:each="feature : ${featureDirList}">
+            <a th:href="${feature.path}" th:text="${feature.name}"></a>
+        </h3>
+    </div>
 </div>
 </body>
 </html>
