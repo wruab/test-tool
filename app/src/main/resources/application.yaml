@@ -1,0 +1,13 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: test
+  datasource:
+    url: jdbc:sqlite:sqlite_database.db
+    driver-class-name: org.sqlite.JDBC
+
+app:
+  mmdb-path: /Users/huasheng/mmdb/GeoLite2-City.mmdb
+  plugins-path: /Users/huasheng/Desktop/plugins/
