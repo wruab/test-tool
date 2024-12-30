@@ -22,8 +22,10 @@ public class PluginService {
     }
 
     @PostConstruct
-    public void pluginInit(){
+    public void pluginInit() {
+        log.info("开始加载插件...");
         pluginManager.loadPlugins();
+        log.info("启动所有插件...");
         pluginManager.startPlugins();
     }
 
