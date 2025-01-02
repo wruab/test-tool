@@ -1,7 +1,9 @@
 package com.xiaoheibaby.app.service;
 
+import com.xiaoheibaby.app.common.copy.BeanCopier;
 import com.xiaoheibaby.app.common.util.JsonUtil;
 import com.xiaoheibaby.app.model.consts.ConfigDataConst;
+import com.xiaoheibaby.app.model.dto.PluginDataDTO;
 import com.xiaoheibaby.app.model.entity.PluginData;
 import com.xiaoheibaby.plugin.ToolPlugin;
 import jakarta.annotation.PostConstruct;
@@ -24,7 +26,7 @@ public class PluginService {
     private final PluginDBService pluginDBService;
 
     @PostConstruct
-    public void pluginInit() {
+    private void pluginInit() {
         log.info("开始加载插件...");
         this.loadPlugin();
         log.info("加载插件完毕...");
@@ -118,8 +120,16 @@ public class PluginService {
                     break;
             }
         }
+
+        // 更新数据库状态
+        pluginDBService.updateStatus(pluginId, status);
     }
 
+    public List<PluginDataDTO> pluginList() {
+        List<PluginData> pluginDataList = pluginDBService.queryAllPlugin();
+        return pluginDataList.stream().map(BeanCopier.INSTANCE::pluginDataToDTO)
+            .collect(Collectors.toList());
+    }
 
     public List<String> executeAllPlugins(String input) {
         // 获取所有实现 PluginFeature 接口的扩展

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <title>插件</title>
+</head>
+<body>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Version</th>
+        <th>Provider</th>
+        <th>Status</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="plugin : ${pluginDataDTOList}">
+        <td th:text="${plugin.id}"></td>
+        <td th:text="${plugin.name}"></td>
+        <td th:text="${plugin.description}"></td>
+        <td th:text="${plugin.version}"></td>
+        <td th:text="${plugin.provider}"></td>
+        <td th:text="${plugin.status}"></td>
+        <td>
+            <a th:href="@{'/plugin/enable/' + ${plugin.id}}" class="btn btn-success">启用</a>
+            <a th:href="@{'/plugin/disable/' + ${plugin.id}}" class="btn btn-danger">禁用</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

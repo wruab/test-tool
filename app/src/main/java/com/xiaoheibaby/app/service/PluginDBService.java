@@ -1,6 +1,7 @@
 package com.xiaoheibaby.app.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.LambdaUpdateWrapper;
 import com.xiaoheibaby.app.mapper.PluginDataMapper;
 import com.xiaoheibaby.app.model.consts.ConfigDataConst;
 import com.xiaoheibaby.app.model.entity.PluginData;
@@ -34,5 +35,11 @@ public class PluginDBService {
 
     public int insert(PluginData pluginData) {
         return pluginDataMapper.insert(pluginData);
+    }
+
+    public int updateStatus(String pluginId, int status) {
+        return pluginDataMapper.update(new LambdaUpdateWrapper<>(PluginData.class)
+            .eq(PluginData::getId, pluginId)
+            .set(PluginData::getStatus, status));
     }
 }
