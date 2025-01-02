@@ -95,30 +95,12 @@ public class PluginService {
         if (pluginWrapper == null) {
             throw new RuntimeException("插件未找到，无法启用！");
         }
-        // 获取插件状态
-        PluginState state = pluginWrapper.getPluginState();
         if (status == ConfigDataConst.STATUS_DISABLE) {
-            switch (state) {
-                case STARTED:
-                    pluginManager.disablePlugin(pluginId);
-                    break;
-                case DISABLED:
-                    break;
-                default:
-                    pluginManager.stopPlugin(pluginId);
-                    break;
-            }
+            pluginManager.stopPlugin(pluginId);
+            pluginManager.disablePlugin(pluginId);
         } else if (status == ConfigDataConst.STATUS_ENABLE) {
-            switch (state) {
-                case DISABLED:
-                    pluginManager.enablePlugin(pluginId);
-                    break;
-                case STARTED:
-                    break;
-                default:
-                    pluginManager.startPlugin(pluginId);
-                    break;
-            }
+            pluginManager.enablePlugin(pluginId);
+            pluginManager.startPlugin(pluginId);
         }
 
         // 更新数据库状态
