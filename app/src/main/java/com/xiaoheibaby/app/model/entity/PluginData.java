@@ -17,6 +17,9 @@ public class PluginData {
     @TableField("name")
     private String name;
 
+    @TableField("description")
+    private String description;
+
     @TableField("version")
     private String version;
 
@@ -32,6 +35,6 @@ public class PluginData {
     @TableField(value = "create_time", fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 }

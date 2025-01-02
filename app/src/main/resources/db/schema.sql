@@ -22,6 +22,7 @@ REPLACE INTO feature_directory (id, name, path, status, create_time, update_time
 CREATE TABLE IF NOT EXISTS plugin_data (
     id TEXT PRIMARY KEY,
     name TEXT NOT NULL,
+    description TEXT,
     version TEXT NOT NULL,
     provider TEXT NOT NULL,
     dependencies TEXT,

@@ -28,6 +28,7 @@
                             <Plugin-Id>first-plugin</Plugin-Id>
                             <Plugin-Provider>xiaohei</Plugin-Provider>
                             <Plugin-Version>0.0.1</Plugin-Version>
+                            <Plugin-Description>测试用插件</Plugin-Description>
                         </manifestEntries>
                     </archive>
                 </configuration>
