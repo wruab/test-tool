@@ -5,12 +5,11 @@ import com.xiaoheibaby.app.common.util.JsonUtil;
 import com.xiaoheibaby.app.model.consts.ConfigDataConst;
 import com.xiaoheibaby.app.model.dto.PluginDataDTO;
 import com.xiaoheibaby.app.model.entity.PluginData;
-import com.xiaoheibaby.plugin.ToolPlugin;
+import com.xiaoheibaby.plugin.extension.ToolPlugin;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.pf4j.PluginManager;
-import org.pf4j.PluginState;
 import org.pf4j.PluginWrapper;
 import org.springframework.stereotype.Service;
 

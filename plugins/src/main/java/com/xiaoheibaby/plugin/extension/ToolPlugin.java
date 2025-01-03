@@ -1,4 +1,4 @@
-package com.xiaoheibaby.plugin;
+package com.xiaoheibaby.plugin.extension;
 
 import org.pf4j.ExtensionPoint;
 

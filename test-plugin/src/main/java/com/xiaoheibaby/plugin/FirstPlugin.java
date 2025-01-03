@@ -1,5 +1,6 @@
 package com.xiaoheibaby.plugin;
 
+import com.xiaoheibaby.plugin.extension.ToolPlugin;
 import org.pf4j.Extension;
 
 @Extension
