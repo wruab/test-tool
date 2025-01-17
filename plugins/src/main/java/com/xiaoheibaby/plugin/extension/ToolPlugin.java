@@ -12,4 +12,6 @@ public interface ToolPlugin extends ExtensionPoint {
     String testPrint4(String inputStr);
 
     String testPrint5(String inputStr);
+
+    String testPrint6(String inputStr);
 }
